@@ -1,0 +1,7 @@
+{
+  "name": "bcs-books",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
