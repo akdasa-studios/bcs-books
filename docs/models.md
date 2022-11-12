@@ -1,6 +1,6 @@
 # Models
 
-```
+```mermaid
 classDiagram
 
 class Language {
@@ -8,7 +8,13 @@ class Language {
     +string name
 }
 
+class MediaUrl {
+    +string url
+    +Resolution resolution
+}
+
 class Chapter {
+    +ChapterId id
     +BookId bookId
     +string title
     +language language
@@ -16,20 +22,31 @@ class Chapter {
 }
 
 class Book {
+    +BookId id
     +string title
     +language language
 }
 
 class Page {
+    +PageId id
     +ChapterId chapterId
     +order number
     +string content
 }
 
+class Media {
+    +MediaId id
+    +PageId pageId
+    +Resolution resolution
+    +string description
+}
+
 Chapter o-- Language : written in
 Book o-- Language : written in
 Book <-- Chapter : belongs to
-Page <-- Chapter : belongs to
+Page --> Chapter : belongs to
+Media --> Page : belongs to
+Media --> MediaUrl : at
 ```
 
 # Value Objects
