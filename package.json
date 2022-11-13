@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "4.4.0",
+    "@playwright/test": "^1.27.1",
     "@stryker-mutator/core": "^6.3.0",
     "@stryker-mutator/jest-runner": "^6.3.0",
     "@stryker-mutator/typescript-checker": "^6.3.0",
