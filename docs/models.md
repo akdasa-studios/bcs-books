@@ -4,49 +4,66 @@
 classDiagram
 
 class Language {
-    +string code
-    +string name
-}
-
-class MediaUrl {
-    +string url
-    +Resolution resolution
+    <<value>>
+    +code: string
+    +name: string
 }
 
 class Chapter {
-    +ChapterId id
-    +BookId bookId
-    +string title
-    +language language
-    +order number
+    <<entity>>
+    +bookId: BookId
+    +languageId: LanguageId
+    +title: string
+    +order: number
 }
 
 class Book {
-    +BookId id
-    +string title
-    +language language
+    <<entity>>
+    +title: string
+    +languageId: LanguageId
 }
 
 class Page {
-    +PageId id
-    +ChapterId chapterId
-    +order number
-    +string content
+    <<aggregate>>
+    +chapterId: ChapterId
+    +media: List[Media]
+    +order: number
+    +content: string
+}
+
+class TableOfContext {
+    <<aggregate>>
+    +bookId: BookId
+    +chapters: List[Chapter]
+}
+
+class MediaUrl {
+    <<value>>
+    +url: string
+    +quality: MediaQuality
 }
 
 class Media {
-    +MediaId id
-    +PageId pageId
-    +Resolution resolution
-    +string description
+    <<aggregate>>
+    +pageId: PageId
+    +description: string
+    +urs: List[MediaUrl]
 }
 
-Chapter o-- Language : written in
-Book o-- Language : written in
-Book <-- Chapter : belongs to
-Page --> Chapter : belongs to
-Media --> Page : belongs to
-Media --> MediaUrl : at
+class MediaQuality {
+    <<enumeration>>
+    Low,
+    High
+}
+
+Chapter --> Language : written in
+Chapter "M" --> TableOfContext : belongs to
+Book --> Language : written in
+Book <-- "M" Chapter : belongs to
+Page "M" --> Chapter : belongs to
+Media "M" --> Page : belongs to
+Media --> "M" MediaUrl : at
+MediaUrl --> MediaQuality : of
 ```
 
 # Value Objects
