@@ -52,6 +52,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Run app
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          start: npm serve
+
       # Run tests
       - name: e2e tests
         uses: cypress-io/github-action@v4
@@ -61,6 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: read
     steps:
       - uses: actions/checkout@v2
 
