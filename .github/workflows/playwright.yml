@@ -6,6 +6,8 @@ on:
     branches: [ main, master ]
 jobs:
   test:
+    permissions:
+      packages: read
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
