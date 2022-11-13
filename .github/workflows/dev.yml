@@ -56,7 +56,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          start: npm serve
+          start: npm run serve
+          wait-on: 'http://localhost:8080'
 
       # Run tests
       - name: e2e tests
