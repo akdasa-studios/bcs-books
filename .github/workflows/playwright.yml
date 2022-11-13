@@ -21,6 +21,7 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm run serve &
+    # todo: ^^ wait until app started
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
