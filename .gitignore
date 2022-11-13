@@ -5,6 +5,7 @@
 *.tmp.*
 *.sublime-project
 *.sublime-workspace
+.stryker-tmp
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate

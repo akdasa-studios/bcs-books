@@ -8,6 +8,8 @@ cp ./.devcontainer/config.fish ~/.config/fish/
 npm install -g @ionic/cli@latest
 npm install -g capacitor-resources
 npm install -g eslint
+# npm install -g stryker-cli
+# npm install -g cypress
 
 # project dependencies
 npm install
