@@ -4,8 +4,9 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
-  test:
+  e2e:
     permissions:
       packages: read
     timeout-minutes: 60
@@ -20,13 +21,19 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: npm run serve &
-    # todo: ^^ wait until app started
-    - name: Install Playwright Browsers
+
+    - name: run app
+      run: npm run serve &
+      # todo: ^^ wait until app started
+
+    - name: install browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
+
+    - name: run tests
       run: npx playwright test
-    - uses: actions/upload-artifact@v3
+
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3
       if: always()
       with:
         name: e2e
