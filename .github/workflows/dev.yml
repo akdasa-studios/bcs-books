@@ -1,5 +1,7 @@
 name: dev
 on: push
+permissions:
+  packages: read
 
 jobs:
   tests:
