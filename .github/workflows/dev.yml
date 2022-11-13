@@ -49,6 +49,14 @@ jobs:
       - name: Tests
         run: npm run test:unit
 
+      - name: upload artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: unit
+        path: unit-report/
+        retention-days: 30
+
       # Upload test coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
