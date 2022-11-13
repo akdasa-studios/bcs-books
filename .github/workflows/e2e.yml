@@ -1,4 +1,4 @@
-name: e2e
+name: dev
 on:
   push:
     branches: [ main, master ]
